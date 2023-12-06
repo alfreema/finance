@@ -40,15 +40,14 @@ $ npm install alfreema/finance
 In your node application, `require` the plugin and call the `calculate` function.
 
 ```javascript
-const { payment } = require('alfreema/finance');
+const { payment } = require('finance');
 
 const rate = 2;
 const numberOfPayments = 36;
 const loanPrincipal = -1000000;
-const expectedResult = 39232.85;
 
 const resultPMT = Number(payment(rate, numberOfPayments, loanPrincipal).toFixed(2));
-console.log(resultPMT)
+console.log(`expected result=39232.85\nactual result=${resultPMT}`)
 // ...
 ```
 
