@@ -1,0 +1,15 @@
+{
+  "name": "finance",
+  "version": "0.5.0",
+  "description": "Financial calculations written in pure javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
