@@ -1,15 +1,30 @@
-const { sumOfPresentValues } = require('./sum-of-present-values.js');
+// xirr.js
+function durYear(date1, date2) {
+  // Implementation of durYear function
+  // You need to provide the calculation logic for the duration in years
+  // This function should return the duration in years between two dates
+}
 
-function extendedInternalRateOfReturn(cfs, dts, guess) {
-  if (cfs.length !== dts.length) throw new Error('Number of cash flows and dates should match');
+function sumEq(cfs, durs, guess) {
+  // Implementation of sumEq function
+  // You need to provide the calculation logic for the sum of equations
+  // This function should return the sum of equations based on provided parameters
+}
+
+function calculateXIRR(cfs, dts, guess) {
+  if (cfs.length !== dts.length) {
+    throw new Error('Number of cash flows and dates should match');
+  }
 
   var positive, negative;
-  Array.prototype.slice.call(cfs).forEach(function (value) {
+  cfs.forEach(function (value) {
     if (value > 0) positive = true;
     if (value < 0) negative = true;
   });
 
-  if (!positive || !negative) throw new Error('XIRR requires at least one positive value and one negative value');
+  if (!positive || !negative) {
+    throw new Error('XIRR requires at least one positive value and one negative value');
+  }
 
   guess = guess || 0;
 
@@ -17,14 +32,14 @@ function extendedInternalRateOfReturn(cfs, dts, guess) {
   var guess_last;
   var durs = [0];
 
-  // Create Array of durations from First date
+  // Create Array of durations from the First date
   for (var i = 1; i < dts.length; i++) {
     durs.push(durYear(dts[0], dts[i]));
   }
 
   do {
     guess_last = guess;
-    guess = guess_last - sumOfPresentValues(cfs, durs);
+    guess = guess_last - sumEq(cfs, durs, guess_last);
     limit--;
 
   } while (guess_last.toFixed(5) !== guess.toFixed(5) && limit > 0);
@@ -34,11 +49,6 @@ function extendedInternalRateOfReturn(cfs, dts, guess) {
   return Math.round(xirr * 100) / 100;
 }
 
-//Returns duration in years between two dates
-function durYear(first, last) {
-  return (Math.abs(last.getTime() - first.getTime()) / (1000 * 3600 * 24 * 365));
-}
-
 module.exports = {
-  extendedInternalRateOfReturn,
+  calculateXIRR,
 };
