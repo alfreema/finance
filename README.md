@@ -37,7 +37,7 @@ $ npm install alfreema/finance
 
 ## How To Use
 
-In your node application, `require` the plugin and call the `calculate` function.
+In your node application, `require` the plugin and call the chosen function.
 
 ```javascript
 const { payment } = require('finance');
